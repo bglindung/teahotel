@@ -3,8 +3,76 @@
 @include mat-core();
 
 
-$theahotel-primary: mat-palette($mat-teal, 200);
-$theahotel-accent:  mat-palette($mat-teal, 50);
+
+$thea-primary: (
+  50 : #e6e8ff,
+  100 : #c1c6fe,
+  200 : #98a1fe,
+  300 : #6f7bfd,
+  400 : #505efc,
+  500 : #3142fc,
+  600 : #2c3cfc,
+  700 : #2533fb,
+  800 : #1f2bfb,
+  900 : #131dfa,
+  A100 : #ffffff,
+  A200 : #f5f5ff,
+  A400 : #c2c4ff,
+  A700 : #a8abff,
+  contrast: (
+      50 : #000000,
+      100 : #000000,
+      200 : #000000,
+      300 : #000000,
+      400 : #ffffff,
+      500 : #ffffff,
+      600 : #ffffff,
+      700 : #ffffff,
+      800 : #ffffff,
+      900 : #ffffff,
+      A100 : #000000,
+      A200 : #000000,
+      A400 : #000000,
+      A700 : #000000,
+  )
+);
+
+$thea-accent: (
+  50    : #fffefb,
+  100   : #fffdf6,
+  200   : #fffcf0,
+  300   : #fffaea,
+  400   : #fff9e6,
+  500   : #fff8e1,
+  600   : #fff7dd,
+  700   : #fff6d9,
+  800   : #fff5d5,
+  900   : #fff3cd,
+  A100  : #ffffff,
+  A200  : #ffffff,
+  A400  : #ffffff,
+  A700  : #ffffff,
+  contrast: (
+      50    : #000000,
+      100   : #000000,
+      200   : #000000,
+      300   : #000000,
+      400   : #000000,
+      500   : #000000,
+      600   : #000000,
+      700   : #000000,
+      800   : #000000,
+      900   : #000000,
+      A100  : #000000,
+      A200  : #000000,
+      A400  : #000000,
+      A700  : #000000,
+    )
+);
+
+
+$theahotel-primary: mat-palette($thea-primary, 400, 100, 700);
+$theahotel-accent:  mat-palette($thea-accent, 500, 400, 700);
 
 
 $theahotel-warn:    mat-palette($mat-red);
@@ -12,13 +80,46 @@ $theahotel-warn:    mat-palette($mat-red);
 
 $theahotel-theme: mat-light-theme($theahotel-primary, $theahotel-accent, $theahotel-warn);
 
+@import './app/navigation/navtabs/navtabs.component-theme.scss';
 @include angular-material-theme($theahotel-theme);
 
+// navtabs component scss file
+@include navtabs-component-theme($theahotel-theme);
+//-----------------------------------------------------------------------
+$thea-typography: mat-typography-config(
+  $font-family:   'Rubik, sans-serif',
+  $display-4:     mat-typography-level(112px, 112px, 300),
+  $display-3:     mat-typography-level(56px, 56px, 400),
+  $display-2:     mat-typography-level(45px, 48px, 400),
+  $display-1:     mat-typography-level(34px, 40px, 400),
+  $headline:      mat-typography-level(97.54px, 32px, 400),
+  $title:         mat-typography-level(61px, 0px, 500),
+  $subheading-2:  mat-typography-level(48.77px, 0.25px, 400),
+  $subheading-1:  mat-typography-level(34.54px, 0.25px, 400),
+  $body-2:        mat-typography-level(14.22px, 0.25px, 500),
+  $body-1:        mat-typography-level(16.26px, 0.5px, 400),
+  $caption:       mat-typography-level(12.19px, 1.25px, 400),
+  $button:        mat-typography-level(14.22px, 1.25px, 500),
+  // Line-height must be unit-less fraction of the font-size.
+  $input:         mat-typography-level(inherit, 1.125, 400)
+);
 
+// Override typography CSS classes (e.g., mat-h1, mat-display-1, mat-typography, etc.).
+@include mat-base-typography($thea-typography);
 
+// Override typography for a specific Angular Material components.
+@include mat-checkbox-typography($thea-typography);
 
+// Override typography for all Angular Material, including mat-base-typography and all components.
+@include angular-material-typography($thea-typography);
 
+@include mat-core($thea-typography);
 
-.navtabs-container {
-  background-color: mat-color($theahotel-accent);
+// All our style will go hire
+.mat-list-option:hover,
+.mat-list-option.mat-list-item-focus,
+.mat-nav-list .mat-list-item:hover,
+.mat-nav-list .mat-list-item.mat-list-item-focus{
+  background-color: mat-color($theahotel-primary, A200);
+  color: mat-color($theahotel-primary, 900);
 }
